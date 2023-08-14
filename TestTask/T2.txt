@@ -1,0 +1,52 @@
+drop table product_category_adjacent;
+drop table product;
+drop table category;
+
+create table category (
+    pk_category_id INT PRIMARY KEY,
+    name VARCHAR(255)
+);
+
+create table product (
+    pk_product_id INT PRIMARY KEY,
+    name VARCHAR(255)
+);
+
+create table product_category_adjacent (
+    fk_product_id INT,
+    fk_category_id INT,
+    PRIMARY KEY (fk_product_id, fk_category_id),
+    FOREIGN KEY (fk_product_id) REFERENCES product (pk_product_id),
+    FOREIGN KEY (fk_category_id) REFERENCES category (pk_category_id)
+);
+
+insert into category (pk_category_id, name)
+values
+    (1, 'category 1'),
+    (2, 'category 2'),
+    (3, 'category 3'),
+    (4, 'category 4');
+
+insert into product (pk_product_id, name)
+values
+    (1, 'product 1'),
+    (2, 'product 2'),
+    (3, 'product 3'),
+    (4, 'product 4'),
+    (5, 'product 5');
+
+insert into product_category_adjacent (fk_product_id, fk_category_id)
+values
+    (1, 1),
+    (1, 2),
+    (2, 2),
+    (3, 3),
+    (4, 1),
+    (4, 3);
+
+select p.name, c.name
+from product_category_adjacent pc
+right join product p on pc.fk_product_id = p.pk_product_id
+left join category c on pc.fk_category_id = c.pk_category_id
+
+	

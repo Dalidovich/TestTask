@@ -1,4 +1,6 @@
-﻿namespace TestTask.Lib
+﻿using TestTask.Lib.Exceptions.Circle;
+
+namespace TestTask.Lib
 {
     public class Circle : Shape
     {
@@ -8,7 +10,7 @@
         {
             if (r <=0)
             {
-                throw new ArgumentException("Radius cannot be less than zero");
+                throw new CircleRadiusException();
             }
             R = r;
         }

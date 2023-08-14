@@ -1,4 +1,6 @@
-﻿namespace TestTask.Lib
+﻿using TestTask.Lib.Exceptions.Triangle;
+
+namespace TestTask.Lib
 {
     public class Triangle : Shape
     {
@@ -8,11 +10,11 @@
         {
             if (a<=0 || b<=0 || c<=0)
             {
-                throw new ArgumentException("Side cannot be less than zero");
+                throw new TriangleSideException();
             }
             if (!triangleExist(a, b, c))
             {
-                throw new ArgumentException("Triangle with such sides cannot exist");
+                throw new TriangleExistException();
             }
 
             Sides = new[] { a, b, c };

@@ -107,5 +107,23 @@ namespace TestTask.Test
             //Assert
             comparison.Should().Throw<TriangleExistException>();
         }
+
+        [Fact]
+        public void FindRightTriangleArea_WithRightData_ReturnArea()
+        {
+            //Arrange
+            var a = 15;
+            var b = 8;
+            var c = 17;
+            var triangle = new Triangle(a, b, c);
+            var expectedS = 60;
+
+
+            //Act
+            var s = triangle.GetArea();
+
+            //Assert
+            s.Should().BeApproximately(expectedS, 0.01);
+        }
     }
 }
